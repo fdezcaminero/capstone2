@@ -126,7 +126,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.css */ \"./src/styles.css\");\n\n\n//# sourceURL=webpack://capstone2/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.css */ \"./src/styles.css\");\n\n\nconst tvContainer = document.getElementById('tvContainer');\nconst tvArray = [5, 169, 1871, 73, 51, 156];\n\ntvArray.forEach(logTV);\n\nasync function logTV(item) {\n  const response = await fetch(`https://api.tvmaze.com/shows/${item}`);\n  const movies = await response.json();\n  console.log(movies);\n  const image = document.createElement('img');\n  const title = document.createElement('p');\n  image.src = `${movies.image.medium}`;\n  title.innerHTML = `${movies.name}`;\n  tvContainer.appendChild(image);\n  tvContainer.appendChild(title);\n}\n\n// logTV();\n\n\n//# sourceURL=webpack://capstone2/./src/index.js?");
 
 /***/ }),
 
