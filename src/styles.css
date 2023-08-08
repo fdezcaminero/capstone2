@@ -1,3 +1,19 @@
-h1 {
-  color: red;
+@font-face {
+  font-family: cinema;
+  src: url(./assets/cinema_st.ttf);
+}
+
+.headerStyles {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  font-family: cinema, sans-serif;
+  font-size: 25px;
+}
+
+.footerStyles {
+  display: flex;
+  flex-direction: column;
+  font-family: cinema, sans-serif;
+  font-size: 25px;
 }
