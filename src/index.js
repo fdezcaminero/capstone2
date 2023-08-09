@@ -1,8 +1,5 @@
 import './styles.css';
-import './scripts/popup.js'
-import {createModal, displayModal} from './scripts/popup.js'
-
-const btnModal = document.querySelector('.btn-comment')
+import createModal from './scripts/popup.js';
 
 const tvContainer = document.getElementById('tvContainer');
 const tvArray = [5, 169, 1871, 73, 51, 156];
@@ -42,11 +39,10 @@ async function logTV(item, index) {
   card.appendChild(buttonReservations);
   tvContainer.appendChild(card);
 
-  
   document.getElementById(`${index}`).addEventListener('click', async () => {
     console.log('button working');
-    let showId = tvArray[buttonComments.id]
-    createModal(showId)
+    const showId = tvArray[buttonComments.id];
+    createModal(showId);
   });
   document.getElementById(`buttonReservations${index}`).addEventListener('click', () => {
     console.log('reservations button');
@@ -54,12 +50,6 @@ async function logTV(item, index) {
 }
 
 tvArray.forEach(logTV);
-
-btnModal.addEventListener('click', async () => {
-
-  createModal(1871)
-
-})
 
 // async function logLikes() {
 //   const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/`,
