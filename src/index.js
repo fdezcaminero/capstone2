@@ -3,8 +3,6 @@ import './styles.css';
 const tvContainer = document.getElementById('tvContainer');
 const tvArray = [5, 169, 1871, 73, 51, 156];
 
-tvArray.forEach(logTV);
-
 async function logTV(item) {
   const response = await fetch(`https://api.tvmaze.com/shows/${item}`);
   const movies = await response.json();
@@ -34,3 +32,5 @@ async function logTV(item) {
   card.appendChild(buttonReservations);
   tvContainer.appendChild(card);
 }
+
+tvArray.forEach(logTV);
