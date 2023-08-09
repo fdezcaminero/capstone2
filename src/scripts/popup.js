@@ -1,18 +1,17 @@
 const modal = document.querySelector('.comment-modal')
 const btnModal = document.querySelector('.btn-comment')
 
-const data = [
-    {
-        image: 'https://static.tvmaze.com/uploads/images/original_untouched/10/27412.jpg'
-    }
-]
 
-let crearModal = () => {
+
+const tvArray = [5, 169, 1871, 73, 51, 156];
+
+
+let createModal = () => {
     modal.innerHTML = ''
     modal.innerHTML += `
     <div class="modal-heading">
         <button onclick="window.modal.close();">Cerrar</button>
-        <img src="${data[0].image}" alt="">
+        <img src="${tvArray[2].image}" alt="">
         <h2>Title</h2>
     </div>
     <div class="modal-body">
@@ -20,15 +19,24 @@ let crearModal = () => {
         <div class="duration">Duration: hs-min</div>
         <div class="director">Director: direccion</div>
         <div class="actores">Actores: act1, act2, act3 </div>
-    
     </div>`
 window.modal.showModal()
 console.log('imagen: ',data.image);
 }
 
-btnModal.addEventListener('click',() => {
+btnModal.addEventListener('click', async () => {
     console.log('Boton funcionando');
-    crearModal()
+    let caption = await getData(tvArray[2])
+    console.log(caption);
+    const card = {
+        name: caption.name,
+        genres: caption.genres,
+        languajes: caption.language,
+        producer: caption,
+        actors: 'actors'
+    }
+    createModal()
+    
 })
 
 
@@ -40,7 +48,8 @@ const getData = async (id) => {
     return json
 }
 
-getData(id)
+
+
 
 
 
