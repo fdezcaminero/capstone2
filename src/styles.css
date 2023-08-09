@@ -32,6 +32,37 @@
 /* Modal Stykes */
 
 .comment-modal {
-  width: 80vw;
+  width: 50vw;
   height: 80wh;
+}
+
+.modal-heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading img {
+  width: 38vw;
+}
+
+.close-modal {
+  position: absolute;
+  top: 10;
+  right: 0;
+  margin-right: 2rem;
+  background-color: white;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.modal-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  padding: 0 2rem 0 2rem;
+  align-items: center;
+  gap: 1rem;
 }

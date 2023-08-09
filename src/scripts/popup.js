@@ -5,8 +5,11 @@ let displayModal = (movie) => {
     modal.innerHTML = ''
     modal.innerHTML += `
     <div class="modal-heading">
-        <img src="${movie.image}" alt="">
-        <button onclick="window.modal.close()"><i class="fa-solid fa-xmark"></i></button>
+        <div class="heading">
+            <img src="${movie.image}" alt="">
+            <button class="close-modal" onclick="window.modal.close()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
         <h2>${movie.name}</h2>
     </div>
     <div class="modal-body">
