@@ -1,48 +1,45 @@
 const modal = document.querySelector('.comment-modal')
-const btnModal = document.querySelector('.btn-comment')
+//onclick="window.modal.close();
 
-
-
-const tvArray = [5, 169, 1871, 73, 51, 156];
-
-
-let createModal = (movie) => {
+let displayModal = (movie) => {
     modal.innerHTML = ''
     modal.innerHTML += `
     <div class="modal-heading">
-        <button onclick="window.modal.close();">Cerrar</button>
         <img src="${movie.image}" alt="">
+        <button onclick="window.modal.close()"><i class="fa-solid fa-xmark"></i></button>
         <h2>${movie.name}</h2>
     </div>
     <div class="modal-body">
-        <p class="producer">Producer: ${movie.producer}</p>
-        <div class="duration">Duration: hs-min</div>
-        <div class="director">Director: direccion</div>
-        <div class="actores">Actores: act1, act2, act3 </div>
+        <div class="producer">Producer: ${movie.producer}</div>
+        <div class="genres">Genres: ${movie.genres}</div>
+        <div class="director">Languages: ${movie.languages}</div>
+        <div class="actores">Actores: ${movie.actors} </div>
     </div>`
 window.modal.showModal()
 console.log('modal creado');
 }
 
-btnModal.addEventListener('click', async () => {
-    console.log('Boton funcionando');
-    let movieId = tvArray[2]
-    let caption = await getData(movieId)
-    let prodAPI = await getProducer(movieId)
-    console.log(caption);
+let createModal = async (cardId) => {
+    
+    let caption = await getData(cardId)
+    let prodAPI = await getProducer(cardId)
+    let actorsAPI = await getActors(cardId)
+
+    // Create data card
     const card = {
         name: caption.name,
+        image: caption.image.medium,
         genres: caption.genres,
-        languajes: caption.language,
-        producer: prodAPI.name,
-        actors: 'actors'
+        languages: caption.language,
+        producer: prodAPI.person.name,
+        actors: actorsAPI
     }
-    createModal(card)
-    
-    console.log(prodAPI.person);
-})
+    //Create modal
+    displayModal(card)
+}
 
 
+// API MANAGEMENT
 
 const getData = async (id) => {
     const requestURL = `https://api.tvmaze.com/shows/${id}`
@@ -59,9 +56,14 @@ const getProducer = async (id) => {
     return json[0]
 }
 
-// const getActors = async
+const getActors = async (id) => {
+    const requestURL = `https://api.tvmaze.com/shows/${id}/cast`
+    const response = await fetch(requestURL);
+    const json = await response.json()
+    return [json[0].person.name, json[1].person.name, json[2].person.name]
+}
 
-export default createModal
+export {displayModal, createModal}
 
 
 
