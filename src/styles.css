@@ -17,3 +17,9 @@
   font-family: cinema, sans-serif;
   font-size: 25px;
 }
+
+.tvClass {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
