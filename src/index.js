@@ -70,26 +70,26 @@ tvArray.forEach(logTV);
 // });
 
 async function newLike() {
-  const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ql2WzJr90DiP5KlSpxzA/likes/`, {
+  const response = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ql2WzJr90DiP5KlSpxzA/likes/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      'item_id': 'tv1',
+      item_id: 'tv1',
     }),
-  })
-};
+  });
+}
 
 // console.log(newLike());
 
 async function readLikes() {
-  const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ql2WzJr90DiP5KlSpxzA/likes/`, {
+  const response = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ql2WzJr90DiP5KlSpxzA/likes/', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
-  })
-};
+  });
+}
 
 console.log(readLikes());
