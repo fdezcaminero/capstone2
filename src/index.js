@@ -124,18 +124,6 @@ tvArray.forEach(logTV);
 // console.log(newLike(4));
 // console.log(newLike(5));
 // console.log(newLike(6));
-async function newLike() {
-  const response = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ql2WzJr90DiP5KlSpxzA/likes/', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      item_id: 'tv1',
-    }),
-  });
-}
-
 // newLike(1);
 // newLike(2);
 // newLike(3);
