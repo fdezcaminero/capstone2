@@ -42,7 +42,6 @@ const displayModal = (movie) => {
         <div class="actores">Actores: ${movie.actors} </div>
     </div>`;
   window.modal.showModal();
-  console.log('modal creado');
 };
 
 const createModal = async (cardId) => {

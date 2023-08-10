@@ -7,15 +7,15 @@ const tvArray = [5, 169, 1871, 73, 51, 156];
 let responseArray = [];
 
 async function readLikes() {
-  const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ql2WzJr90DiP5KlSpxzA/likes/`, {
+  const response = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ql2WzJr90DiP5KlSpxzA/likes/', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
-  })
+  });
   const likes = await response.json();
   responseArray = likes;
-};
+}
 
 async function logTV(item, index) {
   const response = await fetch(`https://api.tvmaze.com/shows/${item}`);
@@ -39,16 +39,13 @@ async function logTV(item, index) {
   title.innerHTML = `${movies.name}`;
 
   readLikes()
-  .then(() => {
-    for (let i = 0; i < responseArray.length; i += 1) {
-      if (responseArray[i].item_id === `tv${index + 1}`) {
-        likesCounter.innerHTML = responseArray[i].likes;
+    .then(() => {
+      for (let i = 0; i < responseArray.length; i += 1) {
+        if (responseArray[i].item_id === `tv${index + 1}`) {
+          likesCounter.innerHTML = responseArray[i].likes;
+        }
       }
-    }
-  })
-  .catch(error => {
-    console.error(error);
-  });
+    });
 
   likeButton.innerHTML = '<i class="fa-regular fa-heart"></i>';
   midDiv.classList.add('flexdiv');
@@ -72,12 +69,12 @@ async function logTV(item, index) {
   tvContainer.appendChild(card);
 
   document.getElementById(`${index}`).addEventListener('click', async () => {
-    console.log('button working');
+    // console.log('button working');
     const showId = tvArray[buttonComments.id];
     createModal(showId);
   });
   document.getElementById(`buttonReservations${index}`).addEventListener('click', () => {
-    console.log('reservations button');
+    // console.log('reservations button');
   });
 }
 
@@ -103,17 +100,17 @@ tvArray.forEach(logTV);
 //   console.log('button working');
 // });
 
-async function newLike(itemnumber) {
-  const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ql2WzJr90DiP5KlSpxzA/likes/`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      'item_id': `tv${itemnumber}`,
-    }),
-  })
-};
+// async function newLike(itemnumber) {
+//   const response = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ql2WzJr90DiP5KlSpxzA/likes/', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({
+//       item_id: `tv${itemnumber}`,
+//     }),
+//   });
+// }
 
 // console.log(newLike(1));
 // console.log(newLike(2));
