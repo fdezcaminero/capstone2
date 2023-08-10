@@ -53,7 +53,7 @@ const createModal = async (cardId) => {
   // Create data card
   const card = {
     name: caption.name,
-    image: caption.image.medium,
+    image: caption.image.original,
     genres: caption.genres,
     languages: caption.language,
     producer: prodAPI.person.name,
