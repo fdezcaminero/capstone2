@@ -124,10 +124,10 @@ tvArray.forEach(logTV);
 // console.log(newLike(4));
 // console.log(newLike(5));
 // console.log(newLike(6));
-
 // newLike(1);
 // newLike(2);
 // newLike(3);
 // newLike(4);
 // newLike(5);
 // newLike(6);
+// console.log(newLike());
