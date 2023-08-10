@@ -42,7 +42,6 @@ const displayModal = (movie) => {
         <div class="actores">Actores: ${movie.actors} </div>
     </div>`;
   window.modal.showModal();
-  console.log('modal creado');
 };
 
 const createModal = async (cardId) => {
@@ -53,7 +52,7 @@ const createModal = async (cardId) => {
   // Create data card
   const card = {
     name: caption.name,
-    image: caption.image.medium,
+    image: caption.image.original,
     genres: caption.genres,
     languages: caption.language,
     producer: prodAPI.person.name,
