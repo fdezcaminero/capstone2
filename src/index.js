@@ -15,7 +15,7 @@ const readLikes = async () => {
   });
   const likes = await response.json();
   responseArray = likes;
-}
+};
 
 const newLike = async (itemnumber) => {
   const response = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ql2WzJr90DiP5KlSpxzA/likes/', {
@@ -27,7 +27,8 @@ const newLike = async (itemnumber) => {
       item_id: `tv${itemnumber}`,
     }),
   });
-}
+  return response;
+};
 
 const logTV = async (item, index) => {
   const response = await fetch(`https://api.tvmaze.com/shows/${item}`);
@@ -80,9 +81,9 @@ const logTV = async (item, index) => {
   document.getElementById(`likeButton${index}`).addEventListener('click', () => {
     newLike(index + 1);
     readLikes()
-    .then(() => {
-      likesCounter.innerHTML = responseArray[index].likes;
-    });
+      .then(() => {
+        likesCounter.innerHTML = responseArray[index].likes;
+      });
   });
 
   document.getElementById(`${index}`).addEventListener('click', async () => {
@@ -93,7 +94,7 @@ const logTV = async (item, index) => {
   document.getElementById(`buttonReservations${index}`).addEventListener('click', () => {
     // console.log('reservations button');
   });
-}
+};
 
 tvArray.forEach(logTV);
 
