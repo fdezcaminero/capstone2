@@ -78,7 +78,7 @@ const logTV = async (item, index) => {
   card.appendChild(buttonReservations);
   tvContainer.appendChild(card);
 
-  document.getElementById(`likeButton${index}`).addEventListener('click', () => {
+  document.getElementById(`likeButton${index}`).addEventListener('click', async () => {
     newLike(index + 1);
     readLikes()
       .then(() => {
