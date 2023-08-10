@@ -131,5 +131,3 @@ tvArray.forEach(logTV);
 // newLike(5);
 // newLike(6);
 // console.log(newLike());
-
-

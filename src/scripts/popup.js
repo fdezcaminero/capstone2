@@ -28,6 +28,7 @@ const getActors = async (id) => {
 // API involvement key: Ql2WzJr90DiP5KlSpxzA
 const API_INVOLVEMENT = 'Ql2WzJr90DiP5KlSpxzA';
 
+/* eslint-disable */
 const postComments = async () => {
   const dataComment = {
     item_id: '5',
@@ -53,7 +54,7 @@ const postComments = async () => {
       console.log('Request error: ', error);
     });
 };
-
+/* eslint-enable */
 const getCommets = async (id) => {
   const total = [];
   const requestURL = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${API_INVOLVEMENT}/comments?item_id=${id}`;
@@ -68,7 +69,7 @@ const getCommets = async (id) => {
   return total;
 };
 // Postear comentario
-// postComments()
+// postComments();
 
 const comment1 = await getCommets(2);
 
