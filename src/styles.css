@@ -66,3 +66,11 @@
   align-items: center;
   gap: 1rem;
 }
+
+.margin-div {
+  margin: 0;
+}
+
+.margin-likes {
+  margin-left: 10px;
+}
