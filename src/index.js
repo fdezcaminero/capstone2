@@ -18,9 +18,7 @@ async function logTV(item, index) {
   buttonComments.innerHTML = 'Comments';
   buttonReservations.innerHTML = 'Reservations';
   buttonComments.id = `${index}`;
-  console.log(buttonComments.id);
   buttonReservations.id = `buttonReservations${index}`;
-  console.log(buttonReservations.id);
 
   image.src = `${movies.image.medium}`;
   image.alt = `${movies.name}`;
@@ -52,15 +50,17 @@ async function logTV(item, index) {
 tvArray.forEach(logTV);
 
 // async function logLikes() {
-//   const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/`,
-//   method: 'POST',
+//   const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/`, {
+//     method: 'POST',
 //     headers: {
 //       'Content-Type': 'application/json',
 //     }
-//   );
-//   const likes = await response.json();
+//   });
+//   // const likes = response;
 
-//   console.log(likes);
+//   console.log(response);
+//   Ql2WzJr90DiP5KlSpxzA
+// RMJ8NTvaiiWTSWP5xo3h
 // }
 
 // logLikes();
@@ -68,3 +68,28 @@ tvArray.forEach(logTV);
 // document.getElementById('buttonComments1').addEventListener('click', () => {
 //   console.log('button working');
 // });
+
+async function newLike() {
+  const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ql2WzJr90DiP5KlSpxzA/likes/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      'item_id': 'tv1',
+    }),
+  })
+};
+
+// console.log(newLike());
+
+async function readLikes() {
+  const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ql2WzJr90DiP5KlSpxzA/likes/`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+};
+
+console.log(readLikes());
