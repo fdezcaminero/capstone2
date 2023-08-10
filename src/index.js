@@ -1,4 +1,5 @@
 import './styles.css';
+import createModal from './scripts/popup.js';
 
 const tvContainer = document.getElementById('tvContainer');
 const tvArray = [5, 169, 1871, 73, 51, 156];
@@ -13,12 +14,14 @@ async function logTV(item, index) {
   const title = document.createElement('p');
   const buttonComments = document.createElement('button');
   const buttonReservations = document.createElement('button');
+
   buttonComments.innerHTML = 'Comments';
   buttonReservations.innerHTML = 'Reservations';
-  buttonComments.id = `buttonComments${index}`;
+  buttonComments.id = `${index}`;
   console.log(buttonComments.id);
   buttonReservations.id = `buttonReservations${index}`;
   console.log(buttonReservations.id);
+
   image.src = `${movies.image.medium}`;
   image.alt = `${movies.name}`;
   title.innerHTML = `${movies.name}`;
@@ -36,8 +39,10 @@ async function logTV(item, index) {
   card.appendChild(buttonReservations);
   tvContainer.appendChild(card);
 
-  document.getElementById(`buttonComments${index}`).addEventListener('click', () => {
+  document.getElementById(`${index}`).addEventListener('click', async () => {
     console.log('button working');
+    const showId = tvArray[buttonComments.id];
+    createModal(showId);
   });
   document.getElementById(`buttonReservations${index}`).addEventListener('click', () => {
     console.log('reservations button');
