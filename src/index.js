@@ -6,7 +6,7 @@ const tvArray = [5, 169, 1871, 73, 51, 156];
 
 let responseArray = [];
 
-async function readLikes() {
+const readLikes = async () => {
   const response = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ql2WzJr90DiP5KlSpxzA/likes/', {
     method: 'GET',
     headers: {
@@ -17,7 +17,19 @@ async function readLikes() {
   responseArray = likes;
 }
 
-async function logTV(item, index) {
+const newLike = async (itemnumber) => {
+  const response = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ql2WzJr90DiP5KlSpxzA/likes/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      item_id: `tv${itemnumber}`,
+    }),
+  });
+}
+
+const logTV = async (item, index) => {
   const response = await fetch(`https://api.tvmaze.com/shows/${item}`);
   const movies = await response.json();
   const card = document.createElement('section');
@@ -52,11 +64,6 @@ async function logTV(item, index) {
   card.appendChild(image);
   card.appendChild(midDiv);
 
-  // midDiv.innerHTML = title.innerHTML + likeButton.innerHTML;
-  // midDiv.innerHTML = likesCounter.innerHTML;
-  // card.appendChild(likesCounter);
-  // midDiv.innerHTML.appendChild(likesCounter.innerHTML);
-
   midDiv.appendChild(title);
   midDiv.appendChild(likeButton);
   midDiv.appendChild(likesCounter);
@@ -64,9 +71,19 @@ async function logTV(item, index) {
   likeButton.classList.add('margin-likes');
   likesCounter.classList.add('margin-div');
 
+  likeButton.id = `likeButton${index}`;
+
   card.appendChild(buttonComments);
   card.appendChild(buttonReservations);
   tvContainer.appendChild(card);
+
+  document.getElementById(`likeButton${index}`).addEventListener('click', () => {
+    newLike(index + 1);
+    readLikes()
+    .then(() => {
+      likesCounter.innerHTML = responseArray[index].likes;
+    });
+  });
 
   document.getElementById(`${index}`).addEventListener('click', async () => {
     // console.log('button working');
@@ -99,18 +116,6 @@ tvArray.forEach(logTV);
 // document.getElementById('buttonComments1').addEventListener('click', () => {
 //   console.log('button working');
 // });
-
-// async function newLike(itemnumber) {
-//   const response = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/Ql2WzJr90DiP5KlSpxzA/likes/', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({
-//       item_id: `tv${itemnumber}`,
-//     }),
-//   });
-// }
 
 // console.log(newLike(1));
 // console.log(newLike(2));
