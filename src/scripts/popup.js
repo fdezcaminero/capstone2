@@ -68,12 +68,6 @@ const getCommets = async (id) => {
   });
   return total;
 };
-// Postear comentario
-// postComments();
-
-const comment1 = await getCommets(2);
-
-console.log(comment1);
 
 // Modal functions
 
