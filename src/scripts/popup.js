@@ -1,3 +1,4 @@
+import commentCounter from "./commentCounter.js";
 
 const modal = document.querySelector('.comment-modal');
 // API involvement key: Ql2WzJr90DiP5KlSpxzA
@@ -88,7 +89,7 @@ const displayModal = (movie) => {
         <div class="actores">Actores: ${movie.actors} </div> 
       </div>
       <div class="comments-section">
-        <h2>Comments (quantity)</h2>
+        <h2>Comments (${commentCounter(movie.comments)})</h2>
         <ul class="comment">
         </ul>
       </div>

@@ -77,8 +77,17 @@
 
 /* Comment section */
 
+.comments-section h2 {
+  display: flex;
+  justify-content: center;
+}
+
 .comment {
   list-style-type: none;
+}
+
+.comment li {
+  padding-bottom: 0.5rem;
 }
 
 /* Add comment */
