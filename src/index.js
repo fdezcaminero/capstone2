@@ -58,6 +58,7 @@ const logTV = async (item, index) => {
 
   likeButton.innerHTML = '<i class="fa-solid fa-heart"></i>';
   midDiv.classList.add('flexdiv');
+  card.classList.add('cardClass');
   card.appendChild(image);
   card.appendChild(midDiv);
 
@@ -93,7 +94,13 @@ const logTV = async (item, index) => {
 
 tvArray.forEach(logTV);
 
-document.getElementById('Counter').innerHTML = countMovies(tvArray);
+// const numCards = document.querySelectorAll('.cardClass');
+// console.log(numCards);
+// const numberOfCards = numCards.length;
+
+// console.log(numberOfCards); // This will log the number of elements with the 'cardClass' class
+
+document.getElementById('Counter').innerHTML = countMovies();
 
 //
 // API keys:
