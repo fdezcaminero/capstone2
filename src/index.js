@@ -63,7 +63,7 @@ const logTV = async (item, index) => {
   title.innerHTML = `${movies.name}`;
 
   await readLikes();
-  const tvLikes = responseArray.find(item => item.item_id === `tv${index + 1}`);
+  const tvLikes = responseArray.find((item) => item.item_id === `tv${index + 1}`);
   likesCounter.innerHTML = tvLikes ? tvLikes.likes : 0;
 
   likeButton.innerHTML = '<i class="fa-solid fa-heart"></i>';
@@ -87,7 +87,7 @@ const logTV = async (item, index) => {
   document.getElementById(`likeButton${index}`).addEventListener('click', async () => {
     await newLike(index + 1);
     await readLikes();
-    const updatedtvLikes = responseArray.find(item => item.item_id === `tv${index + 1}`);
+    const updatedtvLikes = responseArray.find((item) => item.item_id === `tv${index + 1}`);
     likesCounter.innerHTML = updatedtvLikes ? updatedtvLikes.likes : 0;
   });
 
@@ -118,7 +118,7 @@ tvArray.forEach(logTV);
 // }
 
 // for (let i = 0; i < responseArray.length; i += 1) {
-      //   if (responseArray[i].item_id === `tv${index + 1}`) {
-      //     
-      //   }
-      // }
+//   if (responseArray[i].item_id === `tv${index + 1}`) {
+//
+//   }
+// }
