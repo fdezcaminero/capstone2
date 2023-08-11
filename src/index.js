@@ -27,8 +27,19 @@ const newLike = async (itemnumber) => {
       item_id: `tv${itemnumber}`,
     }),
   });
-  return response;
+  // return response;
 };
+
+// const sortLikes = async (item, index) => {
+//   // for (let i = 0; i < responseArray.length; i += 1) {
+//   //   if (responseArray[i].item_id === `tv${index + 1}`) {
+//   //     likesCounter.innerHTML = responseArray[i].likes;
+//   //   }
+//   // }
+
+//   let newArray = item;
+//   console.log(newArray);
+// }
 
 const logTV = async (item, index) => {
   const response = await fetch(`https://api.tvmaze.com/shows/${item}`);
@@ -51,16 +62,11 @@ const logTV = async (item, index) => {
   image.alt = `${movies.name}`;
   title.innerHTML = `${movies.name}`;
 
-  readLikes()
-    .then(() => {
-      for (let i = 0; i < responseArray.length; i += 1) {
-        if (responseArray[i].item_id === `tv${index + 1}`) {
-          likesCounter.innerHTML = responseArray[i].likes;
-        }
-      }
-    });
+  await readLikes();
+  const tvLikes = responseArray.find(item => item.item_id === `tv${index + 1}`);
+  likesCounter.innerHTML = tvLikes ? tvLikes.likes : 0;
 
-  likeButton.innerHTML = '<i class="fa-regular fa-heart"></i>';
+  likeButton.innerHTML = '<i class="fa-solid fa-heart"></i>';
   midDiv.classList.add('flexdiv');
   card.appendChild(image);
   card.appendChild(midDiv);
@@ -78,12 +84,11 @@ const logTV = async (item, index) => {
   card.appendChild(buttonReservations);
   tvContainer.appendChild(card);
 
-  document.getElementById(`likeButton${index}`).addEventListener('click', () => {
-    newLike(index + 1);
-    readLikes()
-      .then(() => {
-        likesCounter.innerHTML = responseArray[index].likes;
-      });
+  document.getElementById(`likeButton${index}`).addEventListener('click', async () => {
+    await newLike(index + 1);
+    await readLikes();
+    const updatedtvLikes = responseArray.find(item => item.item_id === `tv${index + 1}`);
+    likesCounter.innerHTML = updatedtvLikes ? updatedtvLikes.likes : 0;
   });
 
   document.getElementById(`${index}`).addEventListener('click', async () => {
@@ -112,22 +117,8 @@ tvArray.forEach(logTV);
 // RMJ8NTvaiiWTSWP5xo3h
 // }
 
-// logLikes();
-
-// document.getElementById('buttonComments1').addEventListener('click', () => {
-//   console.log('button working');
-// });
-
-// console.log(newLike(1));
-// console.log(newLike(2));
-// console.log(newLike(3));
-// console.log(newLike(4));
-// console.log(newLike(5));
-// console.log(newLike(6));
-// newLike(1);
-// newLike(2);
-// newLike(3);
-// newLike(4);
-// newLike(5);
-// newLike(6);
-// console.log(newLike());
+// for (let i = 0; i < responseArray.length; i += 1) {
+      //   if (responseArray[i].item_id === `tv${index + 1}`) {
+      //     
+      //   }
+      // }
