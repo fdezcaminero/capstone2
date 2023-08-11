@@ -3,7 +3,7 @@ import createModal from './scripts/popup.js';
 import countMovies from './scripts/countMovies.js';
 
 const tvContainer = document.getElementById('tvContainer');
-const tvArray = [5, 169, 1871, 73, 51, 156];
+const tvArray = [5, 169, 1871, 73, 51, 109, 156, 576];
 
 let responseArray = [];
 
@@ -28,7 +28,7 @@ const newLike = async (itemnumber) => {
       item_id: `tv${itemnumber}`,
     }),
   });
-  return response; // Added this to avoid linter error 'response declared but never used' - not giving any problems at the moment
+  return response; // Added this to avoid linter error
 };
 
 const logTV = async (item, index) => {
