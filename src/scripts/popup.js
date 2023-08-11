@@ -100,6 +100,17 @@ const displayModal = (movie) => {
         <ul class="comment">
         </ul>
       </div>
+    </div>
+    <div class="add-comment">
+        <h3>Add a comment</h3>
+        <form class="add-comment">
+        <input type="text" placeholder="Your name">
+
+        <textarea name="message" id="textarea" cols="40" rows="5" placeholder="Write me something..."
+              maxlength="500" name="message" required></textarea>
+
+        <button class="btn-add-comment" type="submit">Comment</button>
+        </form>
     </div>`;
 
   // Comment list
