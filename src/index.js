@@ -100,7 +100,8 @@ tvArray.forEach(logTV);
 
 // console.log(numberOfCards); // This will log the number of elements with the 'cardClass' class
 
-document.getElementById('Counter').innerHTML = countMovies();
+document.getElementById('Counter').innerHTML = countMovies(tvArray);
+console.log(countMovies(tvArray));
 
 //
 // API keys:

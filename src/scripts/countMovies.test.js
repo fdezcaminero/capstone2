@@ -6,4 +6,8 @@ describe('Test counter function', () => {
   test('Count movies', () => {
     expect(countMovies(movieArray)).toEqual(4);
   });
+  test('Remove element from movies, then count', () => {
+    movieArray.pop();
+    expect(countMovies(movieArray)).toEqual(3);
+  });
 });
