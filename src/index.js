@@ -1,5 +1,6 @@
 import './styles.css';
 import createModal from './scripts/popup.js';
+import countMovies from './scripts/countMovies.js';
 
 const tvContainer = document.getElementById('tvContainer');
 const tvArray = [5, 169, 1871, 73, 51, 156];
@@ -91,6 +92,8 @@ const logTV = async (item, index) => {
 };
 
 tvArray.forEach(logTV);
+
+document.getElementById('Counter').innerHTML = countMovies(tvArray);
 
 // async function logLikes() {
 //   const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/`, {
