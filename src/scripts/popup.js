@@ -1,4 +1,7 @@
+
 const modal = document.querySelector('.comment-modal');
+// API involvement key: Ql2WzJr90DiP5KlSpxzA
+const API_INVOLVEMENT = 'Ql2WzJr90DiP5KlSpxzA';
 // onclick="window.modal.close();
 
 // BASE API MANAGEMENT
@@ -25,16 +28,9 @@ const getActors = async (id) => {
 };
 
 // API INVOLVEMENT
-// API involvement key: Ql2WzJr90DiP5KlSpxzA
-const API_INVOLVEMENT = 'Ql2WzJr90DiP5KlSpxzA';
 
-/* eslint-disable */
-const postComments = async () => {
-  const dataComment = {
-    item_id: '5',
-    username: 'Richard',
-    comment: 'The best!',
-  };
+const postComments = async (dataComment) => {
+  
   const requestURL = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${API_INVOLVEMENT}/comments`;
   fetch(requestURL, {
     method: 'POST',
@@ -53,9 +49,11 @@ const postComments = async () => {
     .catch((error) => {
       console.log('Request error: ', error);
     });
+
+    displayComments(dataComment.item_id)
 };
-/* eslint-enable */
-const getCommets = async (id) => {
+
+const getComments = async (id) => {
   const total = [];
   const requestURL = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${API_INVOLVEMENT}/comments?item_id=${id}`;
   const response = await fetch(requestURL);
@@ -68,14 +66,8 @@ const getCommets = async (id) => {
   });
   return total;
 };
-// Postear comentario
-// postComments();
 
-const comment1 = await getCommets(2);
-
-console.log(comment1);
-
-// Modal functions
+// MODAL FUNCTIONS
 
 const displayModal = (movie) => {
   modal.innerHTML = '';
@@ -96,20 +88,20 @@ const displayModal = (movie) => {
         <div class="actores">Actores: ${movie.actors} </div> 
       </div>
       <div class="comments-section">
-        <h2>Comments (${movie.comments.length})</h2>
+        <h2>Comments (quantity)</h2>
         <ul class="comment">
         </ul>
       </div>
     </div>
     <div class="add-comment">
         <h3>Add a comment</h3>
-        <form class="add-comment">
-        <input type="text" placeholder="Your name">
+        <form class="form-comment">
+        <input class="input-comment type="text" placeholder="Your name">
 
-        <textarea name="message" id="textarea" cols="40" rows="5" placeholder="Write me something..."
+        <textarea name="message" id="textarea" cols="40" rows="5" placeholder="Write a comment..."
               maxlength="500" name="message" required></textarea>
 
-        <button class="btn-add-comment" type="submit">Comment</button>
+        <button class="btn-comment" type="submit">Comment</button>
         </form>
     </div>`;
 
@@ -118,8 +110,6 @@ const displayModal = (movie) => {
   movie.comments.forEach((element) => {
     commentList.innerHTML += `<li class="comment-item">${element.creation_date} - ${element.username}: ${element.comment}</li> `;
   });
-
-  window.modal.showModal();
 };
 
 const createModal = async (cardId) => {
@@ -128,7 +118,7 @@ const createModal = async (cardId) => {
   const actorsAPI = await getActors(cardId);
 
   // Comments
-  const commentsAPI = await getCommets(cardId);
+  const commentsAPI = await getComments(cardId);
 
   // Create data card
   const card = {
@@ -140,8 +130,47 @@ const createModal = async (cardId) => {
     actors: actorsAPI,
     comments: commentsAPI,
   };
+
   // Create modal
   displayModal(card);
+
+  // Form comment
+  addComment(cardId)
+
+  window.modal.showModal();
 };
+
+// ADD COMMENT FUNCTIONS
+const addComment = (cardId) => {
+  let input = document.querySelector('.input-comment')
+  let message = document.querySelector('#textarea')
+  let currentCard = cardId
+
+  const formComment = document.querySelector('.form-comment')
+  formComment.addEventListener('submit', (event) => {
+    event.preventDefault()
+    //Obtain values
+    let usernameInput = input.value
+    let commentTextarea = message.value
+
+    let dataComment = {
+      item_id: currentCard,
+      username: usernameInput,
+      comment: commentTextarea,
+    };
+    //Add Comment
+    postComments(dataComment)
+    createModal(currentCard)
+  })
+}
+
+const displayComments = async (cardId) => {
+  const commentList = document.querySelector('.comment');
+  const commentsAPI = await getComments(cardId);
+  commentList.innerHTML = ''
+  commentsAPI.forEach((element) => {
+    commentList.innerHTML += `<li class="comment-item">${commentsAPI.creation_date} - ${commentsAPI.username}: ${commentsAPI.comment}</li> `;
+  });
+}
 
 export default createModal;
