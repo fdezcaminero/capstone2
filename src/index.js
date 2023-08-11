@@ -27,19 +27,8 @@ const newLike = async (itemnumber) => {
       item_id: `tv${itemnumber}`,
     }),
   });
-  // return response;
+  return response; // Added this to avoid linter error 'response declared but never used' - not giving any problems at the moment
 };
-
-// const sortLikes = async (item, index) => {
-//   // for (let i = 0; i < responseArray.length; i += 1) {
-//   //   if (responseArray[i].item_id === `tv${index + 1}`) {
-//   //     likesCounter.innerHTML = responseArray[i].likes;
-//   //   }
-//   // }
-
-//   let newArray = item;
-//   console.log(newArray);
-// }
 
 const logTV = async (item, index) => {
   const response = await fetch(`https://api.tvmaze.com/shows/${item}`);
