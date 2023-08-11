@@ -1,8 +1,9 @@
 import './styles.css';
 import createModal from './scripts/popup.js';
+import countMovies from './scripts/countMovies.js';
 
 const tvContainer = document.getElementById('tvContainer');
-const tvArray = [5, 169, 1871, 73, 51, 156];
+const tvArray = [5, 169, 1871, 73, 51, 109, 156, 576];
 
 let responseArray = [];
 
@@ -27,7 +28,7 @@ const newLike = async (itemnumber) => {
       item_id: `tv${itemnumber}`,
     }),
   });
-  return response;
+  return response; // Added this to avoid linter error
 };
 
 const logTV = async (item, index) => {
@@ -51,16 +52,11 @@ const logTV = async (item, index) => {
   image.alt = `${movies.name}`;
   title.innerHTML = `${movies.name}`;
 
-  readLikes()
-    .then(() => {
-      for (let i = 0; i < responseArray.length; i += 1) {
-        if (responseArray[i].item_id === `tv${index + 1}`) {
-          likesCounter.innerHTML = responseArray[i].likes;
-        }
-      }
-    });
+  await readLikes();
+  const tvLikes = responseArray.find((item) => item.item_id === `tv${index + 1}`);
+  likesCounter.innerHTML = tvLikes ? tvLikes.likes : 0;
 
-  likeButton.innerHTML = '<i class="fa-regular fa-heart"></i>';
+  likeButton.innerHTML = '<i class="fa-solid fa-heart"></i>';
   midDiv.classList.add('flexdiv');
   card.appendChild(image);
   card.appendChild(midDiv);
@@ -78,12 +74,11 @@ const logTV = async (item, index) => {
   card.appendChild(buttonReservations);
   tvContainer.appendChild(card);
 
-  document.getElementById(`likeButton${index}`).addEventListener('click', () => {
-    newLike(index + 1);
-    readLikes()
-      .then(() => {
-        likesCounter.innerHTML = responseArray[index].likes;
-      });
+  document.getElementById(`likeButton${index}`).addEventListener('click', async () => {
+    await newLike(index + 1);
+    await readLikes();
+    const updatedtvLikes = responseArray.find((item) => item.item_id === `tv${index + 1}`);
+    likesCounter.innerHTML = updatedtvLikes ? updatedtvLikes.likes : 0;
   });
 
   document.getElementById(`${index}`).addEventListener('click', async () => {
@@ -98,36 +93,10 @@ const logTV = async (item, index) => {
 
 tvArray.forEach(logTV);
 
-// async function logLikes() {
-//   const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/`, {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     }
-//   });
-//   // const likes = response;
+document.getElementById('Counter').innerHTML = countMovies(tvArray);
 
-//   console.log(response);
-//   Ql2WzJr90DiP5KlSpxzA
-// RMJ8NTvaiiWTSWP5xo3h
-// }
-
-// logLikes();
-
-// document.getElementById('buttonComments1').addEventListener('click', () => {
-//   console.log('button working');
-// });
-
-// console.log(newLike(1));
-// console.log(newLike(2));
-// console.log(newLike(3));
-// console.log(newLike(4));
-// console.log(newLike(5));
-// console.log(newLike(6));
-// newLike(1);
-// newLike(2);
-// newLike(3);
-// newLike(4);
-// newLike(5);
-// newLike(6);
-// console.log(newLike());
+//
+// API keys:
+// Ql2WzJr90DiP5KlSpxzA
+// RMJ8NTvaiiWTSWP5xo3h (optional)
+//
