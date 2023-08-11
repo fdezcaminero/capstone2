@@ -1,5 +1,3 @@
-const commentCounter = (arrComments) => {
-    return arrComments.length
-}
+const commentCounter = (arrComments) => arrComments.length;
 
-export default commentCounter
+export default commentCounter;

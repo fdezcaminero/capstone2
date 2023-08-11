@@ -1,4 +1,4 @@
-import commentCounter from "./commentCounter.js";
+import commentCounter from './commentCounter.js';
 
 const modal = document.querySelector('.comment-modal');
 // API involvement key: Ql2WzJr90DiP5KlSpxzA
@@ -29,9 +29,21 @@ const getActors = async (id) => {
 };
 
 // API INVOLVEMENT
+const getComments = async (id) => {
+  const total = [];
+  const requestURL = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${API_INVOLVEMENT}/comments?item_id=${id}`;
+  const response = await fetch(requestURL);
+  if (response.status === 400) {
+    return total;
+  }
+  const json = await response.json();
+  json.forEach((element) => {
+    total.push(element);
+  });
+  return total;
+};
 
-const postComments = async (dataComment) => {
-  
+export const postComments = async (dataComment) => {
   const requestURL = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${API_INVOLVEMENT}/comments`;
   fetch(requestURL, {
     method: 'POST',
@@ -51,21 +63,7 @@ const postComments = async (dataComment) => {
       console.log('Request error: ', error);
     });
 
-    displayComments(dataComment.item_id)
-};
-
-const getComments = async (id) => {
-  const total = [];
-  const requestURL = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${API_INVOLVEMENT}/comments?item_id=${id}`;
-  const response = await fetch(requestURL);
-  if (response.status === 400) {
-    return total;
-  }
-  const json = await response.json();
-  json.forEach((element) => {
-    total.push(element);
-  });
-  return total;
+  displayComments(dataComment.item_id);
 };
 
 // MODAL FUNCTIONS
@@ -136,42 +134,43 @@ const createModal = async (cardId) => {
   displayModal(card);
 
   // Form comment
-  addComment(cardId)
+  addComment(cardId);
 
   window.modal.showModal();
 };
 
 // ADD COMMENT FUNCTIONS
+/* eslint-disable */
 const addComment = (cardId) => {
-  let input = document.querySelector('.input-comment')
-  let message = document.querySelector('#textarea')
-  let currentCard = cardId
+  const input = document.querySelector('.input-comment');
+  const message = document.querySelector('#textarea');
+  const currentCard = cardId;
 
-  const formComment = document.querySelector('.form-comment')
+  const formComment = document.querySelector('.form-comment');
   formComment.addEventListener('submit', (event) => {
-    event.preventDefault()
-    //Obtain values
-    let usernameInput = input.value
-    let commentTextarea = message.value
+    event.preventDefault();
+    // Obtain values
+    const usernameInput = input.value;
+    const commentTextarea = message.value;
 
-    let dataComment = {
+    const dataComment = {
       item_id: currentCard,
       username: usernameInput,
       comment: commentTextarea,
     };
-    //Add Comment
-    postComments(dataComment)
-    createModal(currentCard)
-  })
-}
+    // Add Comment
+    postComments(dataComment);
+    createModal(currentCard);
+  });
+};
 
 const displayComments = async (cardId) => {
   const commentList = document.querySelector('.comment');
   const commentsAPI = await getComments(cardId);
-  commentList.innerHTML = ''
+  commentList.innerHTML = '';
   commentsAPI.forEach((element) => {
-    commentList.innerHTML += `<li class="comment-item">${commentsAPI.creation_date} - ${commentsAPI.username}: ${commentsAPI.comment}</li> `;
+    commentList.innerHTML += `<li class="comment-item">${element.creation_date} - ${element.username}: ${element.comment}</li> `;
   });
-}
-
+};
+/* eslint-enable */
 export default createModal;
