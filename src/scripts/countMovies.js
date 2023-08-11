@@ -1,3 +1,3 @@
-export default function countMovies(tvArrayCount) {
-  return tvArrayCount.length;
-}
+const countMovies = (tvArrayCount) => tvArrayCount.length;
+
+export default countMovies;

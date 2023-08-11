@@ -95,22 +95,8 @@ tvArray.forEach(logTV);
 
 document.getElementById('Counter').innerHTML = countMovies(tvArray);
 
-// async function logLikes() {
-//   const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/`, {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     }
-//   });
-//   // const likes = response;
-
-//   console.log(response);
-//   Ql2WzJr90DiP5KlSpxzA
-// RMJ8NTvaiiWTSWP5xo3h
-// }
-
-// for (let i = 0; i < responseArray.length; i += 1) {
-//   if (responseArray[i].item_id === `tv${index + 1}`) {
 //
-//   }
-// }
+// API keys:
+// Ql2WzJr90DiP5KlSpxzA
+// RMJ8NTvaiiWTSWP5xo3h (optional)
+//
