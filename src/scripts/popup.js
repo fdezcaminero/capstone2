@@ -52,7 +52,6 @@ const displayComments = async (cardId) => {
     commentList.innerHTML += `<li class="comment-item">${element.creation_date} - ${element.username}: ${element.comment}</li> `;
   });
   const numComment = commentCounter(commentList);
-  console.log(numComment);
   document.querySelector('.comments-title').innerHTML = `Comments (${numComment})`;
 };
 
@@ -122,7 +121,6 @@ const displayModal = (movie) => {
     commentList.innerHTML += `<li class="comment-item">${element.creation_date} - ${element.username}: ${element.comment}</li> `;
   });
   const numComment = commentCounter(commentList);
-  console.log(numComment);
   document.querySelector('.comments-title').innerHTML = `Comments (${numComment})`;
 };
 
@@ -168,12 +166,9 @@ const createModal = async (cardId) => {
     // Add Comment
     postComments(dataComment);
 
-    console.log('paso displayComment');
     // window.modal.close();
     createModal(currentCard);
-    console.log('Crea modal de nuevo');
     displayModal(card);
-    console.log('De nuevo display modal');
   });
 
   window.modal.showModal();
