@@ -1,3 +1,3 @@
-const commentCounter = (arrComments) => arrComments.length;
+const commentCounter = (ul) => ul.querySelectorAll('li').length;
 
-export default commentCounter;
+module.exports = commentCounter;
