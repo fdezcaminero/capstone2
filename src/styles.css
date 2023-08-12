@@ -6,10 +6,20 @@
 .headerStyles {
   display: flex;
   justify-content: flex-end;
-  gap: 1rem;
   font-family: cinema, sans-serif;
+  gap: 1rem;
   font-size: 35px;
   padding: 1rem;
+}
+
+.movies-counter {
+  display: flex;
+  align-items: flex-start;
+  margin: 0;
+}
+
+.headerStyles p {
+  margin: 0;
 }
 
 .footerStyles {
