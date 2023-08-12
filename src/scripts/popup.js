@@ -42,6 +42,19 @@ const getComments = async (id) => {
   });
   return total;
 };
+// ADD COMMENT FUNCTIONS
+
+const displayComments = async (cardId) => {
+  const commentList = document.querySelector('.comment');
+  const commentsAPI = await getComments(cardId);
+  commentList.innerHTML = '';
+  commentsAPI.forEach((element) => {
+    commentList.innerHTML += `<li class="comment-item">${element.creation_date} - ${element.username}: ${element.comment}</li> `;
+  });
+  const numComment = commentCounter(commentList);
+  console.log(numComment);
+  document.querySelector('.comments-title').innerHTML = `Comments (${numComment})`;
+};
 
 export const postComments = async (dataComment) => {
   const requestURL = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${API_INVOLVEMENT}/comments`;
@@ -55,6 +68,7 @@ export const postComments = async (dataComment) => {
     .then((response) => {
       if (response.status === 201) {
         console.log('Comment created succesfully');
+        displayComments(dataComment.item_id);
       } else {
         console.log('Error to create comment. Status code: ', response.status);
       }
@@ -62,20 +76,6 @@ export const postComments = async (dataComment) => {
     .catch((error) => {
       console.log('Request error: ', error);
     });
-};
-
-// ADD COMMENT FUNCTIONS
-
-const displayComments = async (cardId) => {
-  const commentList = document.querySelector('.comment');
-  const commentsAPI = await getComments(cardId);
-  commentList.innerHTML = '';
-  commentsAPI.forEach((element) => {
-    commentList.innerHTML += `<li class="comment-item">${element.creation_date} - ${element.username}: ${element.comment}</li> `;
-  });
-  const numComment = commentCounter(commentList);
-  console.log(numComment);
-  document.querySelector('.comments-title').innerHTML = `Comments (${numComment})`;
 };
 
 // MODAL FUNCTIONS
@@ -156,7 +156,6 @@ const createModal = async (cardId) => {
   // SUBMIT BUTTON LISTENNER AND FUNCTIONALITY
   const formComment = document.querySelector('.form-comment');
   formComment.addEventListener('submit', () => {
-    // event.preventDefault();
     // Obtain values
     const usernameInput = input.value;
     const commentTextarea = message.value;
@@ -168,9 +167,13 @@ const createModal = async (cardId) => {
     };
     // Add Comment
     postComments(dataComment);
-    displayComments(cardId);
+
+    console.log('paso displayComment');
+    // window.modal.close();
     createModal(currentCard);
+    console.log('Crea modal de nuevo');
     displayModal(card);
+    console.log('De nuevo display modal');
   });
 
   window.modal.showModal();
