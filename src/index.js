@@ -58,6 +58,7 @@ const logTV = async (item, index) => {
 
   likeButton.innerHTML = '<i class="fa-solid fa-heart"></i>';
   midDiv.classList.add('flexdiv');
+  card.classList.add('cardClass');
   card.appendChild(image);
   card.appendChild(midDiv);
 
@@ -91,9 +92,15 @@ const logTV = async (item, index) => {
   });
 };
 
-tvArray.forEach(logTV);
+document.addEventListener('DOMContentLoaded', async () => {
+  const promises = tvArray.map(async (item, index) => {
+    await logTV(item, index);
+  });
 
-document.getElementById('Counter').innerHTML = countMovies(tvArray);
+  await Promise.all(promises);
+  const moviesCount = countMovies('.cardClass');
+  document.getElementById('Counter').innerHTML = moviesCount;
+});
 
 //
 // API keys:
