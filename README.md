@@ -109,7 +109,7 @@ You can deploy this project using:
 
 👤 **Ulises Cappa**
 
-- GitHub: [@ulises2607]([https://github.com/fdezcaminero](https://github.com/ulises2607))
+- GitHub: [@ulises2607](https://github.com/ulises2607)
 - LinkedIn: [Ulises Cappa](https://www.linkedin.com/in/cesar-ulises-cappa-subelza/)
 
 
