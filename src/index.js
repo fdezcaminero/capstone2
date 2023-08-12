@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   await Promise.all(promises);
   const moviesCount = countMovies('.cardClass');
-  document.getElementById('Counter').innerHTML = `(${moviesCount})` ;
+  document.getElementById('Counter').innerHTML = `(${moviesCount})`;
 });
 
 //
