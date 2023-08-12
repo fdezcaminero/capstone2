@@ -155,8 +155,8 @@ const createModal = async (cardId) => {
 
   // SUBMIT BUTTON LISTENNER AND FUNCTIONALITY
   const formComment = document.querySelector('.form-comment');
-  formComment.addEventListener('submit', (event) => {
-    event.preventDefault();
+  formComment.addEventListener('submit', () => {
+    // event.preventDefault();
     // Obtain values
     const usernameInput = input.value;
     const commentTextarea = message.value;
