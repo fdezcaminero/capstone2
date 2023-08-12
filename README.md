@@ -24,9 +24,9 @@
 - [🙏 Acknowledgements](#acknowledgements)
 - [📝 License](#license)
 
-# 📖 To-do list <a name="about-project"></a>
+# 📖 Capstone 2: TV Series <a name="about-project"></a>
 
-**To-do list** is a promotion for the upcoming game between Honinbo Jowa and Akaboshi Intetsu.
+**Capstone 2: TV Series**
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -52,7 +52,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo!](https://fdezcaminero.github.io/Leaderboard/dist/)
+- [Live Demo!](https://fdezcaminero.github.io/capstone2/dist/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
