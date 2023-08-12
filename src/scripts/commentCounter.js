@@ -1,5 +1,3 @@
-const commentCounter = (ul) => {
-    return ul.querySelectorAll('li').length
-}
+const commentCounter = (ul) => ul.querySelectorAll('li').length;
 
-export default commentCounter;
+module.exports = commentCounter;
