@@ -1,21 +1,24 @@
 @font-face {
   font-family: cinema;
-  src: url(./assets/cinema_st.ttf);
+  src: url(./assets/Monster\ AG.ttf);
 }
+
 
 .headerStyles {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
   font-family: cinema, sans-serif;
-  font-size: 25px;
+  font-size: 35px;
+  padding: 1rem;
 }
 
 .footerStyles {
   display: flex;
   flex-direction: column;
   font-family: cinema, sans-serif;
-  font-size: 25px;
+  font-size: 35px;
+  padding: 1rem;
 }
 
 .tvClass {
