@@ -92,16 +92,17 @@ const logTV = async (item, index) => {
   });
 };
 
-tvArray.forEach(logTV);
+// tvArray.forEach(logTV);
 
-// const numCards = document.querySelectorAll('.cardClass');
-// console.log(numCards);
-// const numberOfCards = numCards.length;
+document.addEventListener('DOMContentLoaded', async () => {
+  for (const [index, item] of tvArray.entries()) {
+    await logTV(item, index);
+  }
 
-// console.log(numberOfCards); // This will log the number of elements with the 'cardClass' class
+  const moviesCount = countMovies('.cardClass');
 
-document.getElementById('Counter').innerHTML = countMovies(tvArray);
-console.log(countMovies(tvArray));
+  document.getElementById('Counter').innerHTML = moviesCount;
+});
 
 //
 // API keys:

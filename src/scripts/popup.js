@@ -71,9 +71,9 @@ const getCommets = async (id) => {
 // Postear comentario
 // postComments();
 
-const comment1 = await getCommets(2);
+// const comment1 = await getCommets(2);
 
-console.log(comment1);
+// console.log(comment1);
 
 // Modal functions
 

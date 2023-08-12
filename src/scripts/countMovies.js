@@ -1,3 +1,8 @@
-const countMovies = (tvArrayCount) => tvArrayCount.length;
+// const countMovies = (tvArrayCount) => tvArrayCount.length;
 
-export default countMovies;
+export default function countMovies(className) {
+  const elements = document.querySelectorAll(className);
+  return elements.length;
+}
+
+// export default countMovies;
