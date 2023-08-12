@@ -73,9 +73,9 @@ const displayComments = async (cardId) => {
   commentsAPI.forEach((element) => {
     commentList.innerHTML += `<li class="comment-item">${element.creation_date} - ${element.username}: ${element.comment}</li> `;
   });
-  let numComment = commentCounter(commentList)
+  const numComment = commentCounter(commentList);
   console.log(numComment);
-  document.querySelector('.comments-title').innerHTML = `Comments (${numComment})`
+  document.querySelector('.comments-title').innerHTML = `Comments (${numComment})`;
 };
 
 // MODAL FUNCTIONS
@@ -121,10 +121,9 @@ const displayModal = (movie) => {
   movie.comments.forEach((element) => {
     commentList.innerHTML += `<li class="comment-item">${element.creation_date} - ${element.username}: ${element.comment}</li> `;
   });
-  let numComment = commentCounter(commentList)
+  const numComment = commentCounter(commentList);
   console.log(numComment);
-  document.querySelector('.comments-title').innerHTML = `Comments (${numComment})`
-  
+  document.querySelector('.comments-title').innerHTML = `Comments (${numComment})`;
 };
 
 const createModal = async (cardId) => {
