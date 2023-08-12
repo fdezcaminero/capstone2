@@ -62,8 +62,17 @@ export const postComments = async (dataComment) => {
     .catch((error) => {
       console.log('Request error: ', error);
     });
+};
 
-  displayComments(dataComment.item_id);
+// ADD COMMENT FUNCTIONS
+
+const displayComments = async (cardId) => {
+  const commentList = document.querySelector('.comment');
+  const commentsAPI = await getComments(cardId);
+  commentList.innerHTML = '';
+  commentsAPI.forEach((element) => {
+    commentList.innerHTML += `<li class="comment-item">${element.creation_date} - ${element.username}: ${element.comment}</li> `;
+  });
 };
 
 // MODAL FUNCTIONS
@@ -134,18 +143,11 @@ const createModal = async (cardId) => {
   displayModal(card);
 
   // Form comment
-  addComment(cardId);
-
-  window.modal.showModal();
-};
-
-// ADD COMMENT FUNCTIONS
-/* eslint-disable */
-const addComment = (cardId) => {
   const input = document.querySelector('.input-comment');
   const message = document.querySelector('#textarea');
   const currentCard = cardId;
 
+  // SUBMIT BUTTON LISTENNER AND FUNCTIONALITY
   const formComment = document.querySelector('.form-comment');
   formComment.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -160,17 +162,12 @@ const addComment = (cardId) => {
     };
     // Add Comment
     postComments(dataComment);
+    displayComments(cardId);
     createModal(currentCard);
+    displayModal(card);
   });
+
+  window.modal.showModal();
 };
 
-const displayComments = async (cardId) => {
-  const commentList = document.querySelector('.comment');
-  const commentsAPI = await getComments(cardId);
-  commentList.innerHTML = '';
-  commentsAPI.forEach((element) => {
-    commentList.innerHTML += `<li class="comment-item">${element.creation_date} - ${element.username}: ${element.comment}</li> `;
-  });
-};
-/* eslint-enable */
 export default createModal;
