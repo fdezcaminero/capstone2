@@ -1,4 +1,4 @@
-import countMovies from './countMovies';
+import countMovies from './countMovies.js';
 
 let movieArray = [1, 3, 5, 7];
 

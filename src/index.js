@@ -92,15 +92,15 @@ const logTV = async (item, index) => {
   });
 };
 
-// tvArray.forEach(logTV);
+// ;
 
 document.addEventListener('DOMContentLoaded', async () => {
-  for (const [index, item] of tvArray.entries()) {
+  const promises = tvArray.map(async (item, index) => {
     await logTV(item, index);
-  }
+  });
 
+  await Promise.all(promises);
   const moviesCount = countMovies('.cardClass');
-
   document.getElementById('Counter').innerHTML = moviesCount;
 });
 
