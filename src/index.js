@@ -92,8 +92,6 @@ const logTV = async (item, index) => {
   });
 };
 
-// ;
-
 document.addEventListener('DOMContentLoaded', async () => {
   const promises = tvArray.map(async (item, index) => {
     await logTV(item, index);
