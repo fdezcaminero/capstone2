@@ -28,6 +28,8 @@
 
 **Capstone 2: TV Series**
 
+Video Intro: [Video Introduction](https://www.loom.com/share/831fc44d96704fc6a05630c4ec0ce66c)
+
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
